@@ -2,7 +2,21 @@
 
 import { ref, computed } from 'vue'
 
-const props = defineProps(['title', 'content', 'subtitle'])
+// defineProps(['title', 'content', 'subtitle'])
+defineProps({
+    title:{
+        type: String,
+        required: true
+    },
+    content:{
+        type: String,
+        default: 'Valor padrão da minha caixa...'
+    },
+    qty:{
+        type: Number,
+        default: 10
+    }
+})
 
 const showBox = ref(false)
 
@@ -19,9 +33,11 @@ const textoBotao = computed(() =>
         <button @click="showBox = !showBox">{{ textoBotao }}</button>
 
         <div v-if="showBox" class="expand-box">
-            <h1>{{ props.title }}</h1>
-            <p>{{ props.content }}</p>
-            <h2 class="color">{{ props.subtitle }}</h2>
+
+            <h1>{{ title }}</h1>
+            <p>{{ content }}</p>
+            <p>Quantidade: {{ qty }}</p>
+
         </div>
 
     </div>
@@ -37,8 +53,6 @@ const textoBotao = computed(() =>
     border: 1px solid black;
     box-shadow: 3px 3px 2px 2px gray;
 }
-.color{
-    color: red;
-}
+
 
 </style>
